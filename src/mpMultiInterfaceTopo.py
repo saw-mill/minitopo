@@ -16,7 +16,7 @@ class MpMultiInterfaceTopo(MpTopo):
 		for l in self.topoParam.linkCharacteristics:
 			self.switch.append(self.addOneSwitchPerLink(l))
 			for c in self.client:
-				self. addLink(c,self.switch[-1])
+				self.addLink(c,self.switch[-1])
 			# self.addLink(self.client[0],self.switch[-1])
 			# self.addLink(self.client[1],self.switch[-1])
 			self.addLink(self.switch[-1],self.router, **l.asDict())

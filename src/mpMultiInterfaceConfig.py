@@ -12,7 +12,6 @@ class MpMultiInterfaceConfig(MpConfig):
 		count=int(MpTopo.clientCount)
 		for l in self.topo.switch:
 			for j in range (1,count+1):
-
 				cmd = self.addRouteTableCommand(self.getClientIP(i,j), i)
 			# cmd2 = self.addRouteTableCommand(self.getClient2IP(i), i)
 				self.topo.commandTo(self.client[j-1], cmd)
