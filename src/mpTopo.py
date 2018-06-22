@@ -6,7 +6,7 @@ class MpTopo:
 	topoAttr    = "topoType"
 	switchNamePrefix = "s"
 	routerNamePrefix = "r"
-	clientCount = "8"
+	clientCount = "200"
 	clientName1 = "Client1"
 	clientName2 = "Client2"
 	clientName3 = "Client3"
