@@ -84,7 +84,7 @@ class MpExperience:
 		pass
 
 	def clean(self):
-		self.mpTopo.commandTo(self.mpConfig.client,
+		self.mpTopo.commandTo(self.mpConfig.client1,
 				"killall tcpdump")
 		self.mpTopo.commandTo(self.mpConfig.server,
 				"killall tcpdump")
@@ -100,7 +100,7 @@ class MpExperience:
 		self._saveSysctl(MpParamXp.sysctlKey, self.sysctlBUP)
 		self.sysctlBUPC = {}
 		self._saveSysctl(MpParamXp.sysctlKeyClient, self.sysctlBUPC,
-				ns = True, who = self.mpConfig.client)
+				ns = True, who = self.mpConfig.client1)
 		self.sysctlBUPS = {}
 		self._saveSysctl(MpParamXp.sysctlKeyServer, self.sysctlBUPS,
 				ns = True, who = self.mpConfig.server)
@@ -131,7 +131,7 @@ class MpExperience:
 	def writeSysctl(self):
 		self._writeSysctl(MpParamXp.sysctlKey, self.sysctlBUP)
 		self._writeSysctl(MpParamXp.sysctlKeyClient, self.sysctlBUPC,
-				ns = True, who = self.mpConfig.client)
+				ns = True, who = self.mpConfig.client1)
 		self._writeSysctl(MpParamXp.sysctlKeyServer, self.sysctlBUPS,
 				ns = True, who = self.mpConfig.server)
 
@@ -151,7 +151,7 @@ class MpExperience:
 	def backUpSysctl(self):
 		self._backUpSysctl(MpParamXp.sysctlKey, self.sysctlBUP)
 		self._backUpSysctl(MpParamXp.sysctlKeyClient, self.sysctlBUPC,
-				ns = True, who = self.mpConfig.client)
+				ns = True, who = self.mpConfig.client1)
 		self._backUpSysctl(MpParamXp.sysctlKeyServer, self.sysctlBUPS,
 				ns = True, who = self.mpConfig.server)
 
@@ -176,10 +176,10 @@ class MpExperience:
 		spcap = self.xpParam.getParam(MpParamXp.SERVERPCAP)
 		snaplenpcap = self.xpParam.getParam(MpParamXp.SNAPLENPCAP)
 		if cpcap == "yes" :
-			self.mpTopo.commandTo(self.mpConfig.client,
+			self.mpTopo.commandTo(self.mpConfig.client1,
 					"tcpdump -i any -s " + snaplenpcap + " -w client.pcap &")
 		if spcap == "yes" :
 			self.mpTopo.commandTo(self.mpConfig.server,
 					"tcpdump -i any -s " + snaplenpcap + " -w server.pcap &")
 		if spcap == "yes" or cpcap == "yes":
-			self.mpTopo.commandTo(self.mpConfig.client,"sleep 5")
+			self.mpTopo.commandTo(self.mpConfig.client1,"sleep 5")
