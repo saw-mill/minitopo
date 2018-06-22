@@ -9,6 +9,7 @@ class MpMultiInterfaceConfig(MpConfig):
 
 	def configureRoute(self):
 		i = 0
+		count=int(MpTopo.clientCount)
 		for l in self.topo.switch:
 			for j in range (1,count+1):
 
