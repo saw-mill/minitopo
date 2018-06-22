@@ -5,7 +5,7 @@ class MpMultiInterfaceTopo(MpTopo):
 		MpTopo.__init__(self,topoBuilder, parameterFile)
 		print("Hello from topo multi if")
 		count=int(MpTopo.clientCount)
-		client =[]
+		self.client =[]
 		for i in range (1,count):
 			self.client[i]=self.addHost("Client"+str(i))
 		# self.client1 = self.addHost(MpTopo.clientName1)
