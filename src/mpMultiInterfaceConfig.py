@@ -65,7 +65,7 @@ class MpMultiInterfaceConfig(MpConfig):
 					self.getClient2IP(i), netmask)
 			self.topo.commandTo(self.client[0], cmd)
 			self.topo.commandTo(self.client[0], cmd2)
-			clientIntfMac = self.client[0].intf(self.getClientInterface(i)).MAC()
+			clientIntfMac = self.client[0].intf(self.getClientInterface(i,1)).MAC()
 			client2IntfMac = self.client[1].intf(self.getClient2Interface(i)).MAC()
 			self.topo.commandTo(self.router, "arp -s " + self.getClientIP(i) + " " + clientIntfMac)
 			self.topo.commandTo(self.router, "arp -s " + self.getClient2IP(i) + " " + client2IntfMac)
