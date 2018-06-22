@@ -43,10 +43,13 @@ class MpMultiInterfaceConfig(MpConfig):
 
 
 	def configureInterfaces(self):
+		count=int(MpTopo.clientCount)
 		self.client =[]
 		print("Configure interfaces for multi inf")
-		self.client[0] = self.topo.getHost(MpTopo.clientName1)
-		self.client[1] = self.topo.getHost(MpTopo.clientName2)
+		for i in range (1,count+1):
+			self.client.append(self.topo.getHost("Client"+str(i)))
+		# self.client[0] = self.topo.getHost(MpTopo.clientName1)
+		# self.client[1] = self.topo.getHost(MpTopo.clientName2)
 		self.server = self.topo.getHost(MpTopo.serverName)
 		self.router = self.topo.getHost(MpTopo.routerName)
 		i = 0
