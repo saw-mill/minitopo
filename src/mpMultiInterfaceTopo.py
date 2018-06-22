@@ -8,7 +8,6 @@ class MpMultiInterfaceTopo(MpTopo):
 		self.client =[]
 		for i in range (1,count+1):
 			self.client.append(self.addHost("Client"+str(i)))
-		print self.client
 		# self.client1 = self.addHost(MpTopo.clientName1)
 		# self.client2 = self.addHost(MpTopo.clientName2)
 		self.server = self.addHost(MpTopo.serverName)
@@ -16,8 +15,8 @@ class MpMultiInterfaceTopo(MpTopo):
 		self.switch = []
 		for l in self.topoParam.linkCharacteristics:
 			self.switch.append(self.addOneSwitchPerLink(l))
+			self.addLink(self.client[0],self.switch[-1])
 			self.addLink(self.client[1],self.switch[-1])
-			self.addLink(self.client[2],self.switch[-1])
 			self.addLink(self.switch[-1],self.router, **l.asDict())
 		self.addLink(self.router, self.server)
 
