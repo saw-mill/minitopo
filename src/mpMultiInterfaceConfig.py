@@ -18,7 +18,7 @@ class MpMultiInterfaceConfig(MpConfig):
 
 			cmd = self.addRouteScopeLinkCommand(
 					self.getClientSubnet(i),
-					self.getClientInterface(i), i)
+					self.getClientInterface(i,1), i)
 			self.topo.commandTo(self.client[0], cmd)
 			cmd2 = self.addRouteScopeLinkCommand(
 					self.getClientSubnet(i),
@@ -32,7 +32,7 @@ class MpMultiInterfaceConfig(MpConfig):
 			i = i + 1
 
 		cmd = self.addRouteDefaultGlobalCommand(self.getRouterIPSwitch(0),
-				self.getClientInterface(0))
+				self.getClientInterface(0,1))
 		cmd2 = self.addRouteDefaultGlobalCommand(self.getRouterIPSwitch(0),
 				self.getClient2Interface(0))
 		self.topo.commandTo(self.client[0], cmd)
@@ -57,7 +57,7 @@ class MpMultiInterfaceConfig(MpConfig):
 		links = self.topo.getLinkCharacteristics()
 		for l in self.topo.switch:
 			cmd = self.interfaceUpCommand(
-					self.getClientInterface(i),
+					self.getClientInterface(i,1),
 					self.getClientIP(i), netmask)
 
 			cmd2 = self.interfaceUpCommand(
@@ -72,7 +72,7 @@ class MpMultiInterfaceConfig(MpConfig):
 
 			if(links[i].back_up):
 				cmd = self.interfaceBUPCommand(
-						self.getClientInterface(i))
+						self.getClientInterface(i,1))
 				cmd2 = self.interfaceBUPCommand(
 						self.getClient2Interface(i))
 				self.topo.commandTo(self.client[0], cmd)
@@ -138,8 +138,11 @@ class MpMultiInterfaceConfig(MpConfig):
 	def getRouterInterfaceServer(self):
 		return self.getRouterInterfaceSwitch(len(self.topo.switch))
 
-	def getClientInterface(self, interfaceID):
-		return  MpTopo.clientName1 + "-eth" + str(interfaceID)
+	# def getClientInterface(self, interfaceID):
+	# 	return  MpTopo.clientName1 + "-eth" + str(interfaceID)
+
+	def getClientInterface(self, interfaceID, j):
+		return  "Client"+ str(j) + "-eth" + str(interfaceID)
 
 	def getClient2Interface(self, interfaceID):
 		return  MpTopo.clientName2 + "-eth" + str(interfaceID)	
