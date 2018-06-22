@@ -129,7 +129,7 @@ class MpMultiInterfaceConfig(MpConfig):
 
 	def getRouterIPSwitch(self, interfaceID):
 		lSubnet = self.param.getParam(MpParamTopo.LSUBNET)
-		routerIP = lSubnet + str(interfaceID) + ".3"
+		routerIP = lSubnet + str(interfaceID) + ".9"
 		return routerIP
 
 	def getRouterIPServer(self):
